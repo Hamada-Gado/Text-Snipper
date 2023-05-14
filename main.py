@@ -1,5 +1,4 @@
 from gui import App
-from text_snipper import TextSnipper
 
 import sys
 

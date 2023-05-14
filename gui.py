@@ -2,11 +2,14 @@ import tkinter as tk
 
 from text_snipper import TextSnipper
 
-from ctypes import windll
-try:
-    windll.shcore.SetProcessDpiAwareness(2) # if your windows version >= 8.1
-except:
-    windll.user32.SetProcessDPIAware() # win 8.0 or less 
+# Fix wrong resolution on Windows
+from platform import system
+if system() == "Windows":
+    from ctypes import windll
+    try:
+        windll.shcore.SetProcessDpiAwareness(2) # if your windows version >= 8.1
+    except:
+        windll.user32.SetProcessDPIAware() # win 8.0 or less 
 
 class App:
     
@@ -26,9 +29,9 @@ class App:
         self.canvas = tk.Canvas(self.master, bg= App.BACKGROUND_COLOR)
         self.canvas.pack(fill= tk.BOTH, expand= True)
         
-        self.master.bind("<Button-1>", self.on_mouse_press)
-        self.master.bind("<B1-Motion>", self.on_mouse_motion)
-        self.master.bind("<ButtonRelease-1>", self.on_mouse_release)
+        self.canvas.bind("<Button-1>", self.on_mouse_press)
+        self.canvas.bind("<B1-Motion>", self.on_mouse_motion)
+        self.canvas.bind("<ButtonRelease-1>", self.on_mouse_release)
         
         self.startX: int = -1
         self.startY: int = -1
