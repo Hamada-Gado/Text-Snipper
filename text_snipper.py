@@ -11,7 +11,7 @@ from typing import Callable
 
 class TextSnipper:
     
-    TesseractPath: str = 'tesseract.exe' # path to tesseract.exe
+    TesseractPath: str = r'C:\My Program Files\Tesseract-OCR\tesseract.exe' # path to tesseract.exe
     
     def __init__(self, mode: str, preprocess_modes: list[str]) -> None:
         self.image: Image.Image | None = None
@@ -26,11 +26,9 @@ class TextSnipper:
         self.models: dict[str, Callable] = {"easyocr": self.easyocr_mode, "tesseract": self.tesseract_mode}    
         self.model: str = mode
     
-    def getTextFromImage(self) -> None:
-        print("Reading image from clipboard...")
-        if not self.getImageFromClipboard():
-            print("No image found in clipboard!")
-            return
+    def getTextFromImage(self, box: tuple[int, int, int, int] | None) -> None:
+        print("Getting image...")
+        self.getImage(box)
         
         print("Preprocessing image...")
         self.preprocessing()
@@ -43,10 +41,9 @@ class TextSnipper:
             
         print("DONE!")
         
-    def getImageFromClipboard(self) -> bool:
-        self.image = ImageGrab.grabclipboard()
+    def getImage(self, box: tuple[int, int, int, int] | None) -> None:
+        self.image = ImageGrab.grab(bbox= box)
         self.image_array = np.array(self.image)
-        return self.image is not None
     
     def copyTextToClipboard(self) -> None:
         assert self.text is not None
