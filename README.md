@@ -2,8 +2,8 @@
 A simple script to snip text from images using easyocr or tesseract.
 ## Setup
 * pip install -r requirements.txt
-* download tesseract.exe if you want to use it's mode, and add it to your environment variables or add it's location to TesseractPath variable in TextSnipper class.
-* Download tesseract it from [here](https://digi.bib.uni-mannheim.de/tesseract/?ref=nanonets.com).
+* download tesseract.exe if you want to use its mode, and add it to your environment variables or add it's location to TesseractPath variable in TextSnipper class.
+* Download tesseract from [here](https://digi.bib.uni-mannheim.de/tesseract/?ref=nanonets.com).
 
 ## Usage
 * Run the script, with -h for help to find the right usage, for instance:
