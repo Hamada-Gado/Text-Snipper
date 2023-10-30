@@ -26,6 +26,7 @@ class App:
 
         self.master.wait_visibility()
         self.master.attributes("-alpha", 0.3)
+        self.master.attributes("-topmost", True)
 
         self.master.bind("<Escape>", lambda _: self.master.destroy())
 
